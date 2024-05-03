@@ -59,7 +59,7 @@ Pi= Pies(coverage,repellency_effect,time_transit,rate_treated,rate_untreated)
 
 
 #gonotrophic cycle for a susceptible mosquito calculation
-biting_rate_sus = function(coverage,repellency_effect, biting_rate, bf_baseline, rate_treated, rate_untreated){
+gonotrophic_sus = function(coverage,repellency_effect, biting_rate, bf_baseline, rate_treated, rate_untreated){
   
   prob_fail_treated= (rate_treated)/((biting_rate * bf_baseline) + rate_treated)
   prob_fail_untreated= (rate_untreated)/(biting_rate + rate_untreated)
@@ -79,8 +79,8 @@ mortality_sus= function(coverage,repellency_effect, time_transit, rate_treated,r
   
   return(mortality_sus)
 }
- 
-oviposition_sus = eggs_sus/((exp(mortality_sus *gonotrophic_sus))-1)
+
+oviposition_sus = eggs_sus/((exp(mortality_sus * gonotrophic_sus))-1)
 print(oviposition_sus)
 oviposition_sus_vec <- rep(oviposition_sus, length(coverage))
 
